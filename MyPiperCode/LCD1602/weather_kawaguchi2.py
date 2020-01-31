@@ -5,5 +5,6 @@ url = 'http://weather.livedoor.com/forecast/webservice/json/v1'
 locale = {'city': '110010'}
 data = requests.get(url, params = locale).json()
 
+print(data)
 print(data['forecasts'][0]['date'])
 print(data['forecasts'][0]['telop'])

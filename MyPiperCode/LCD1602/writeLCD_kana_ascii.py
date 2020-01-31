@@ -4,18 +4,12 @@
 import sys
 sys.path.append('/home/pi/Adafruit-Raspberry-Pi-Python-Code-legacy/Adafruit_CharLCD') 
 from Adafruit_CharLCD import Adafruit_CharLCD
-
-import requests
-import json
-
-url = 'http://weather.livedoor.com/forecast/webservice/json/v1'
-locale = {'city': '110010'}
-data = requests.get(url, params = locale).json()
-
-text1 = data['forecasts'][0]['date']
-text2 = data['forecasts'][0]['telop']
-#text2 = 'hello'
-#text3 = 'goodby'
+ 
+text1 = u'ｺﾝﾆﾁﾜ!'
+text2 = u'RasberryPi ﾃﾞｽ'
+ 
+text1 = text1.encode('shift-jis')
+text2 = text2.encode('shift-jis')
  
 try:
   lcd = Adafruit_CharLCD()
@@ -24,9 +18,6 @@ try:
   lcd.message(text1)
   lcd.message('\n')
   lcd.message(text2)
-  #lcd.message('\n')
-  #lcd.message(text3)
-
 finally:
   print 'cleanup'
   lcd.GPIO.cleanup()
